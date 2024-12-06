@@ -26,6 +26,4 @@ class Source {
         language: json['language'] as String?,
         country: json['country'] as String?,
       );
-
- 
 }

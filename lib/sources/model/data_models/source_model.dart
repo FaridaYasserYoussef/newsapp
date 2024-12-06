@@ -12,6 +12,4 @@ class SourceModel {
             ?.map((e) => Source.fromJson(e as Map<String, dynamic>))
             .toList(),
       );
-
-
 }
