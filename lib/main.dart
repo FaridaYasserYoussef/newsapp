@@ -1,26 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/common/app_assets.dart';
-import 'package:newsapp/common/app_colors.dart';
-import 'package:newsapp/common/enums/categoryTypes.dart';
-import 'package:newsapp/common/enums/tabs.dart';
-import 'package:newsapp/homePage.dart';
-import 'package:newsapp/news/view/screens/news_screen.dart';
-import 'package:newsapp/settings/view/screens/settings_screen.dart';
-import 'package:newsapp/sources/view/screens/categories_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'generated/l10n.dart';
+import 'homePage.dart';
+import 'settings/view_model/settings_cubit.dart';
+import 'settings/view_model/settings_states.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const MyApp(),
+  );
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return  MyAppWithCubit();
+  }
 }
 
-class _MyAppState extends State<MyApp> {
+class MyAppWithCubit extends StatelessWidget {
+  // const MyAppWithCubit({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +33,37 @@ class _MyAppState extends State<MyApp> {
       designSize: const Size(412, 870),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: HomePage(),
+      builder: (_, __) {
+        return BlocProvider<SettingsCubit>(create: (context)=> SettingsCubit()..getLocale(),
+        child: BlocBuilder<SettingsCubit, SettingsState>(
+          buildWhen: (previous, current) => previous != current,
+          builder: (context, state) {
+            print("builder is trigerred");
+            // String locale;
+            // if (state is SettingsArabicState) {
+            //   locale = 'ar';
+              
+            // }
+            // if(state is SettingsEnglishState){
+            //   locale = 'en';
+            // }
+
+             return MaterialApp(
+            localizationsDelegates: [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            locale: Locale(state is SettingsArabicState? 'ar': 'en'),
+            debugShowCheckedModeBanner: false,
+            home: const HomePage(),
+          );
+          },
+        
+        ),
+        
         );
       },
     );

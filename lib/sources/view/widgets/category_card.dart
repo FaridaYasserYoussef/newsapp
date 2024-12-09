@@ -41,7 +41,8 @@ class CategoryCard extends StatelessWidget {
               Image(image: AssetImage(categoryModel.categoryImagePath)),
               Text(
                 categoryModel.categoryName,
-                style: TextStyle(color: Colors.white, fontSize: 22.sp),
+                // overflow: TextOverflow.clip,
+                style: TextStyle(color: Colors.white, fontSize: 17.sp),
               )
             ],
           ),

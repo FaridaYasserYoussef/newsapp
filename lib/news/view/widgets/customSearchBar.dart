@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:newsapp/common/app_colors.dart';
+import 'package:newsapp/generated/l10n.dart';
 
 class CustomSearchBar extends StatefulWidget {
   const CustomSearchBar({super.key, required this.controller, this.onChanged, required this.onCloseClicked});
@@ -47,7 +48,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
           ),
           onPressed: widget.onCloseClicked,
           ),
-          hintText: "Search Article",
+          hintText: S.of(context).SearchArticle,
           hintStyle: TextStyle(
             color: Color.fromRGBO(57, 165, 82, 0.28),
             fontSize: 14.sp

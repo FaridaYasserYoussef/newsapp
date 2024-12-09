@@ -4,6 +4,7 @@ import 'package:newsapp/common/app_assets.dart';
 import 'package:newsapp/common/app_colors.dart';
 import 'package:newsapp/common/enums/categoryTypes.dart';
 import 'package:newsapp/common/enums/tabs.dart';
+import 'package:newsapp/generated/l10n.dart';
 import 'package:newsapp/news/view/screens/news_screen.dart';
 import 'package:newsapp/news/view/widgets/customSearchBar.dart';
 import 'package:newsapp/settings/view/screens/settings_screen.dart';
@@ -56,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                         width: 326.w,
                         child: Center(
                             child: Text(
-                          "News App!",
+                          S.of(context).NewsApp,
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -74,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                         child: ListTile(
                           leading:
                               Icon(Icons.list, color: Colors.black, size: 30),
-                          title: Text("Categories",
+                          title: Text(S.of(context).Categories,
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
@@ -96,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                             size: 30,
                           ),
                           title: Text(
-                            "Settings",
+                            S.of(context).Settings,
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold,
@@ -144,7 +145,7 @@ class _HomePageState extends State<HomePage> {
                 
                 ,),
                 title:  Text(
-                  categoryName == null ? "News App" : categoryName!,
+                  categoryName == null ? S.of(context).NewsApp : categoryName!,
                   style: TextStyle(color: Colors.white),
                 ),
                 shape: RoundedRectangleBorder(
